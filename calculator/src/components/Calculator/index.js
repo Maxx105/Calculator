@@ -8,18 +8,10 @@ function Calculator() {
     const [op, setOp] = useState('');
 
     let valOne = '';
-    let valTwo = '';
 
     useEffect(() => {
-        if (op === "+") {
-            document.getElementById('display').value = numOne + numTwo;
-        } else if (op === "-") {
-            document.getElementById('display').value = numOne - numTwo;
-        } else if (op === "x") {
-            document.getElementById('display').value = numOne * numTwo;
-        } else if (op === "/") {
-            document.getElementById('display').value = numOne / numTwo;
-        }
+        doOperation();
+        setOp('');
     }, [numTwo]);
 
     function NumOnClick(e) {
@@ -30,8 +22,10 @@ function Calculator() {
 
     function clear(e) {
         e.preventDefault();
-        valOne='';
-        document.getElementById('display').value = valOne;
+        setOp('');
+        setNumOne('');
+        setNumTwo('');
+        document.getElementById('display').value = '';
     }
 
     function operationOnClick(e) {
@@ -44,11 +38,23 @@ function Calculator() {
     function equal(e) {
         e.preventDefault();
         setNumTwo(parseFloat(document.getElementById('display').value));
-        document.getElementById('display').value = '';
+        doOperation();
+    }
+
+    function doOperation() {
+        if (op === "+") {
+            document.getElementById('display').value = numOne + numTwo;
+        } else if (op === "-") {
+            document.getElementById('display').value = numOne - numTwo;
+        } else if (op === "x") {
+            document.getElementById('display').value = numOne * numTwo;
+        } else if (op === "/") {
+            document.getElementById('display').value = numOne / numTwo;
+        }
     }
 
     return (
-        <div className="container">
+        <div>
             <form name="calculator">
             <table>
                 <tr><input size = "38" type="text" name="display" id="display" disabled/></tr>
