@@ -7,7 +7,7 @@ function Calculator() {
     const [numTwo, setNumTwo] = useState('');
     const [op, setOp] = useState('');
 
-    let valOne = '';
+    let displayVal = '';
 
     useEffect(() => {
         doOperation();
@@ -16,12 +16,13 @@ function Calculator() {
 
     function NumOnClick(e) {
         e.preventDefault();
-        valOne = valOne + e.target.value;
-        document.getElementById('display').value = valOne;
+        displayVal = displayVal + e.target.value;
+        document.getElementById('display').value = displayVal;
     }
 
     function clear(e) {
         e.preventDefault();
+        displayVal = '';
         setOp('');
         setNumOne('');
         setNumTwo('');
@@ -30,7 +31,7 @@ function Calculator() {
 
     function operationOnClick(e) {
         e.preventDefault();
-        valOne = '';
+        displayVal = '';
         setOp(e.target.value);
         setNumOne(parseFloat(document.getElementById('display').value));
     }
@@ -53,14 +54,69 @@ function Calculator() {
         }
     }
 
+    function makePosOrNeg(e) {
+        e.preventDefault();
+        let negDisplayNum = parseFloat(document.getElementById('display').value) * -1;
+        displayVal = negDisplayNum;
+        document.getElementById('display').value = negDisplayNum;
+    }
+
+    function divByHundred(e) {
+        e.preventDefault();
+        let displayNumDivByHundred = parseFloat(document.getElementById('display').value) / 100;
+        displayVal = displayNumDivByHundred;
+        document.getElementById('display').value = displayNumDivByHundred;
+    }
+
     return (
         <div>
-            <form name="calculator">
+            <div className ="btn-group-vertical" role="group" aria-label="Vertical button group">
+                <div><input size = "40" type="text" name="display" id="display" disabled/></div>
+                <div className="btn-group btn-group-lg" role="group" aria-label="First Row">
+                    <input type="button" className="btn btn-light btn-outline-dark" onClick = {clear} value="C" id="C"></input>
+                    <input type="button" className="btn btn-light btn-outline-dark" onClick = {makePosOrNeg} value="+/-" id="plusminus"></input>
+                    <input type="button" className="btn btn-light btn-outline-dark" onClick = {divByHundred} value="%" id="percent"></input>
+                    <input type="button" className="btn btn-warning btn-outline-dark operation" onClick = {operationOnClick} value="/" id="divide"></input>
+                </div>
+                <div className="btn-group btn-group-lg" role="group" aria-label="Second Row">
+                    <input type="button" className="btn btn-secondary btn-outline-dark" onClick = {NumOnClick} value="7" id="seven"></input>
+                    <input type="button" className="btn btn-secondary btn-outline-dark" onClick = {NumOnClick} value="8" id="eight"></input>
+                    <input type="button" className="btn btn-secondary btn-outline-dark" onClick = {NumOnClick} value="9" id="nine"></input>
+                    <input type="button" className="btn btn-warning btn-outline-dark operation" onClick = {operationOnClick} value="x" id="multiply"></input>
+                </div>
+                <div className="btn-group btn-group-lg" role="group" aria-label="Third Row">
+                    <input type="button" className="btn btn-secondary btn-outline-dark" onClick = {NumOnClick} value="4" id="four"></input>
+                    <input type="button" className="btn btn-secondary btn-outline-dark" onClick = {NumOnClick} value="5" id="five"></input>
+                    <input type="button" className="btn btn-secondary btn-outline-dark" onClick = {NumOnClick} value="6" id="six"></input>
+                    <input type="button" className="btn btn-warning btn-outline-dark operation" onClick = {operationOnClick} value="-" id="minus"></input>
+                </div>
+                <div className="btn-group btn-group-lg" role="group" aria-label="Fourth Row">
+                    <input type="button" className="btn btn-secondary btn-outline-dark" onClick = {NumOnClick} value="1" id="one"></input>
+                    <input type="button" className="btn btn-secondary btn-outline-dark" onClick = {NumOnClick} value="2" id="rwo"></input>
+                    <input type="button" className="btn btn-secondary btn-outline-dark" onClick = {NumOnClick} value="3" id="three"></input>
+                    <input type="button" className="btn btn-warning btn-outline-dark operation" onClick = {operationOnClick} value="+" id="plus"></input>
+                </div>
+                <div className="btn-group btn-group-lg" role="group" aria-label="Fourth Row">
+                    <input type="button" className="btn btn-secondary btn-outline-dark" onClick = {NumOnClick} value="0" id="zero"></input>
+                    <input type="button" className="btn btn-secondary btn-outline-dark" onClick = {NumOnClick} value="." id="decimal"></input>
+                    <input type="button" className="btn btn-warning btn-outline-dark operation" onClick = {equal} value="=" id="equal"></input>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+            {/* <form name="calculator">
             <table>
                 <tr><input size = "38" type="text" name="display" id="display" disabled/></tr>
                 <tr>
                     <tr>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {NumOnClick} value="1" id="1">1</button></td>
+                        <td><button type="button" className="btn btn-primary btn-lg btn-block waves-effect" onClick = {NumOnClick} value="1" id="1">1</button></td>
                         <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {NumOnClick} value="2" id="2">2</button ></td>
                         <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {NumOnClick} value="3" id="3">3</button></td>
                         <td><button type="button" className="btn btn-danger btn-lg btn-block" onClick = {operationOnClick} value="+" id="+">+</button></td>
@@ -85,7 +141,7 @@ function Calculator() {
                     </tr>
                 </tr>
             </table>
-        </form>
+        </form> */}
         </div>
     );
 }
