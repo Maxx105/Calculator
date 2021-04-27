@@ -49,7 +49,7 @@ function Calculator() {
             document.getElementById('display').value = numOne - numTwo;
         } else if (op === "x") {
             document.getElementById('display').value = numOne * numTwo;
-        } else if (op === "/") {
+        } else if (op === "÷") {
             document.getElementById('display').value = numOne / numTwo;
         }
     }
@@ -71,12 +71,12 @@ function Calculator() {
     return (
         <div>
             <div className ="btn-group-vertical" role="group" aria-label="Vertical button group">
-                <div><input size = "40" type="text" name="display" id="display" disabled/></div>
+                <div><input size = "40" type="text" name="display" id="display" /></div>
                 <div className="btn-group btn-group-lg" role="group" aria-label="First Row">
                     <input type="button" className="btn btn-light btn-outline-dark" onClick = {clear} value="C" id="C"></input>
                     <input type="button" className="btn btn-light btn-outline-dark" onClick = {makePosOrNeg} value="+/-" id="plusminus"></input>
                     <input type="button" className="btn btn-light btn-outline-dark" onClick = {divByHundred} value="%" id="percent"></input>
-                    <input type="button" className="btn btn-warning btn-outline-dark operation" onClick = {operationOnClick} value="/" id="divide"></input>
+                    <input type="button" className="btn btn-warning btn-outline-dark operation" onClick = {operationOnClick} value="÷" id="divide"></input>
                 </div>
                 <div className="btn-group btn-group-lg" role="group" aria-label="Second Row">
                     <input type="button" className="btn btn-secondary btn-outline-dark" onClick = {NumOnClick} value="7" id="seven"></input>
@@ -103,45 +103,6 @@ function Calculator() {
                 </div>
 
             </div>
-
-
-
-
-
-
-
-
-            {/* <form name="calculator">
-            <table>
-                <tr><input size = "38" type="text" name="display" id="display" disabled/></tr>
-                <tr>
-                    <tr>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block waves-effect" onClick = {NumOnClick} value="1" id="1">1</button></td>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {NumOnClick} value="2" id="2">2</button ></td>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {NumOnClick} value="3" id="3">3</button></td>
-                        <td><button type="button" className="btn btn-danger btn-lg btn-block" onClick = {operationOnClick} value="+" id="+">+</button></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {NumOnClick} value="4" id="4">4</button></td>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {NumOnClick} value="5" id="5">5</button></td>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {NumOnClick} value="6" id="6">6</button></td>
-                        <td><button type="button" className="btn btn-danger btn-lg btn-block" onClick = {operationOnClick} value="-" id="-">-</button></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {NumOnClick} value="7" id="7">7</button></td>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {NumOnClick} value="8" id="8">8</button></td>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {NumOnClick} value="9" id="9">9</button></td>
-                        <td><button type="button" className="btn btn-danger btn-lg btn-block" onClick = {operationOnClick} value="x" id="x">x</button></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {clear} value="C" id="C">C</button></td>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {NumOnClick} value="0" id="0">0</button></td>
-                        <td><button type="button" className="btn btn-primary btn-lg btn-block" onClick = {equal} value="=" id="=">=</button></td>
-                        <td><button type="button" className="btn btn-danger btn-lg btn-block" onClick = {operationOnClick} value="/" id="/">/</button></td>
-                    </tr>
-                </tr>
-            </table>
-        </form> */}
         </div>
     );
 }
